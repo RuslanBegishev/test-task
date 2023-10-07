@@ -1,0 +1,23 @@
+﻿.container {
+  width: 100vh;
+  height: 100vh;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.button-container {
+  width: 300px;
+  height: auto;
+}
+
+.button {
+  font-family: Arial;
+  height: 40px;
+  width: 150px;
+  font-size: 14px;
+  background-color: rgb(243, 243, 243);
+  cursor: pointer;
+  border-radius: 10px;
+}
