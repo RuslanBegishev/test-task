@@ -1,21 +1,26 @@
 ﻿import React, { useState } from "react";
 import './RandomIconComponent.css'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCar, faBicycle, faBus, faTrain, faRocket, faShip, faPlane, faMotorcycle } from "@fortawesome/free-solid-svg-icons";
+import * as Icons from '@fortawesome/free-brands-svg-icons';
+import { library } from "@fortawesome/fontawesome-svg-core";
 
-const icons = [faCar, faBicycle, faBus, faTrain, faRocket, faShip, faPlane, faMotorcycle];
+const iconsList = Object
+  .keys(Icons)
+  .filter(key => key !== "fas" && key !== "prefix" )
+  .map(icon => Icons[icon])
+library.add(...iconsList)
 
 function RandomIconComponent() {
-  const [randomIcon, setRandomIcon] = useState(null);
+  const [showIcon, setShowIcon] = useState(false);
 
   const showRandomIcon = () => {
-    const randomIndex = Math.floor(Math.random() * icons.length);
-    const selectedIcon = icons[randomIndex]
-    setRandomIcon(selectedIcon);
- 
+    setShowIcon(false);
+
     setTimeout(() => {
-      setRandomIcon(null);
-    }, 3000);   
+      const randomIndex = Math.floor(Math.random() * iconsList.length);
+      const selectedIcon = iconsList[randomIndex];
+      setShowIcon(selectedIcon);
+    }, 3000);
   };
 
   return (
@@ -26,7 +31,7 @@ function RandomIconComponent() {
         </button>
       </div>
       <div>
-        {randomIcon && <FontAwesomeIcon icon={randomIcon} size='3x' />}
+        {showIcon && <FontAwesomeIcon icon={showIcon} size='3x' />}
       </div>
     </div>
   );
